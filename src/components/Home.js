@@ -86,7 +86,7 @@ class Home extends Component {
             {this.state.compaign.map(item =>(
             <tr>
               <td style={{width:"50%"}}><Link>{item.campaignName}</Link></td>
-              <td className="btn btn-success btn-sm btn-block" >{item.status}</td>
+              <td><span className="badge badge-pill badge-success btn-block">{item.status}</span></td>
           <td style={{width:"20%",paddingLeft:"40px"}}>{item.opens}</td>
           <td>{item.clicks}</td>
               <td style={{width:"20%",paddingLeft:"70px"}}>
