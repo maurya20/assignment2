@@ -1,9 +1,26 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 
 
 class Home extends Component {
+  constructor(props){
+  super()
+      this.state={
+        compaign:[],
+      }
+    }
+      componentDidMount() {
+        axios.get(`http://127.0.0.1:8000/api/compaignslist/`)
+          .then(res => {
+            const compaign = res.data;
+            this.setState({ compaign });
+          })
+      }
+
+
+
   render() {
     return (
       <div className="container">
@@ -54,24 +71,25 @@ class Home extends Component {
           <div className="col bg"></div>
         </div>
         <hr></hr>
-
+        <div >
         <table className="table table-hover" style={{ border: "1px solid" }}>
           <thead>
             <tr>
               <th>Compaign</th>
               <th>Status</th>
-              <th>Opens</th>
+              <th style={{paddingLeft:"40px"}}>Opens</th>
               <th>Clicks</th>
-              <th>Actions</th>
+              <th style={{width:"20%",paddingLeft:"70px"}}>Actions</th>
             </tr>
           </thead>
           <tbody>
+            {this.state.compaign.map(item =>(
             <tr>
-              <td>John</td>
-              <td className="btn btn-success rounded-pill">Draft</td>
-              <td>john@example.com</td>
-              <td>john@example.com</td>
-              <td>
+              <td style={{width:"50%"}}><Link>{item.campaignName}</Link></td>
+              <td className="btn btn-success btn-sm btn-block" >{item.status}</td>
+          <td style={{width:"20%",paddingLeft:"40px"}}>{item.opens}</td>
+          <td>{item.clicks}</td>
+              <td style={{width:"20%",paddingLeft:"70px"}}>
                 <li class="list-inline-item">
                   <button
                     class="btn btn-warning"
@@ -87,81 +105,13 @@ class Home extends Component {
                   <i className="fa fa-trash"></i> 
                 </button>
               </td>
-            </tr>
-            <tr>
-              <td>Mary</td>
-              <td className="btn btn-success">Draft</td>
-              <td>mary@example.com</td>
-              <td>Mary</td>
-              <td>
-                {" "}
-                <li class="list-inline-item">
-                  <button
-                    class="btn btn-warning"
-                    type="button"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Edit"
-                  >
-                    <i class="fa fa-edit"></i>
-                  </button>
-                </li>
-                <button className="btn btn-danger">
-                  <i className="fa fa-trash"></i>
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Mary</td>
-              <td className="btn btn-success">Draft</td>
-              <td>mary@example.com</td>
-              <td>Mary</td>
-              <td>
-                {" "}
-                <li class="list-inline-item">
-                  <button
-                    class="btn btn-warning"
-                    type="button"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Edit"
-                  >
-                    <i class="fa fa-edit"></i>
-                  </button>
-                </li>
-                <button className="btn btn-danger">
-                  <i className="fa fa-trash"></i> 
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Mary</td>
-              <td className="btn btn-success">Draft</td>
-              <td>mary@example.com</td>
-              <td>Mary</td>
-              <td>
-                {" "}
-                <li class="list-inline-item">
-                  <button
-                    class="btn btn-warning"
-                    type="button"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Edit"
-                  >
-                    <i class="fa fa-edit"></i>
-                  </button>
-                </li>
-                <button className="btn btn-danger">
-                  <i className="fa fa-trash"></i> 
-                </button>
-              </td>
-            </tr>
+              </tr>
+            ))}
+          
           </tbody>
         </table>
-
-
+</div>
+       
 
 
 
