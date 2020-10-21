@@ -72,7 +72,7 @@ class Home extends Component {
         </div>
         <hr></hr>
         <div >
-        <table className="table table-hover" style={{ border: "1px solid" }}>
+        <table className="table table-sm" style={{ border: "1px solid" }}>
           <thead>
             <tr>
               <th>Compaign</th>
