@@ -12,7 +12,7 @@ class Home extends Component {
       }
     }
       componentDidMount() {
-        axios.get(`http://127.0.0.1:8000/api/compaignslist/`)
+        axios.get(`http://127.0.0.1:8000/api/getCampaignList/`)
           .then(res => {
             const compaign = res.data;
             this.setState({ compaign });
